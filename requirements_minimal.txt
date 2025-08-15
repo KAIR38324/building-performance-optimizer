@@ -1,0 +1,12 @@
+# 最小化依赖配置 - Streamlit Cloud备用方案
+# 如果主requirements.txt失败，请使用此文件
+
+streamlit
+numpy
+pandas
+scikit-learn
+joblib
+torch
+google-generativeai
+openai
+requests
