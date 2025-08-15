@@ -1,0 +1,8 @@
+streamlit
+pandas
+torch
+scikit-learn
+numpy
+langchain
+langchain-community
+ollama

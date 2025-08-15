@@ -4,7 +4,9 @@
 
 ### ✅ 已创建的部署文件
 - `app_deploy.py` - 云部署版应用（支持OpenAI、Google Gemini、DeepSeek三种AI服务）
-- `requirements_deploy.txt` - 云部署依赖包
+- `requirements_deploy.txt` - 云部署依赖包（已修复torch问题）
+- `requirements_streamlit_cloud.txt` - Streamlit Cloud专用依赖配置
+- `STREAMLIT_CLOUD_DEPLOYMENT_GUIDE.md` - Streamlit Cloud部署最佳实践
 - `.streamlit/config.toml` - Streamlit配置
 - `.streamlit/secrets.toml.example` - API密钥配置模板
 - `README_deploy.md` - 详细部署文档
@@ -142,9 +144,16 @@ GOOGLE_API_KEY = "your-actual-google-api-key-here"
 - 确认API密钥正确配置
 
 ### 常见错误
-1. **模型加载失败**: 检查.pth文件是否完整上传
-2. **API调用失败**: 验证Google Gemini API密钥
-3. **编码错误**: 确保CSV文件使用UTF-8编码
+1. **ModuleNotFoundError: torch**: 使用修复后的 `requirements_deploy.txt` 或 `requirements_streamlit_cloud.txt`
+2. **模型加载失败**: 检查.pth文件是否完整上传
+3. **API调用失败**: 验证API密钥配置
+4. **编码错误**: 确保CSV文件使用UTF-8编码
+
+### 🚨 Torch依赖问题解决
+如果遇到 `ModuleNotFoundError: No module named 'torch'` 错误：
+1. 使用修复后的 `requirements_deploy.txt`（已包含CPU版本torch）
+2. 或使用 `requirements_streamlit_cloud.txt`（完整优化配置）
+3. 详细解决方案请参考 `STREAMLIT_CLOUD_DEPLOYMENT_GUIDE.md`
 
 ## 📞 技术支持
 
