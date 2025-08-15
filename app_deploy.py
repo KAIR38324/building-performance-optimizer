@@ -49,25 +49,33 @@ ai_provider = st.sidebar.selectbox(
 
 # 显示对应的API配置信息
 if ai_provider == "OpenAI":
-    st.sidebar.info("🔗 获取API密钥: https://platform.openai.com/api-keys")
-    api_key = st.sidebar.text_input("OpenAI API Key", type="password", help="输入您的OpenAI API密钥")
-    if api_key:
-        openai.api_key = api_key
-        AI_AVAILABLE = True
-        st.sidebar.success("✅ OpenAI API 已配置")
-    else:
+    if not OPENAI_AVAILABLE:
+        st.sidebar.error("❌ OpenAI 模块未正确安装")
         AI_AVAILABLE = False
-        st.sidebar.warning("⚠️ 请输入OpenAI API密钥")
+    else:
+        st.sidebar.info("🔗 获取API密钥: https://platform.openai.com/api-keys")
+        api_key = st.sidebar.text_input("OpenAI API Key", type="password", help="输入您的OpenAI API密钥")
+        if api_key:
+            openai.api_key = api_key
+            AI_AVAILABLE = True
+            st.sidebar.success("✅ OpenAI API 已配置")
+        else:
+            AI_AVAILABLE = False
+            st.sidebar.warning("⚠️ 请输入OpenAI API密钥")
 elif ai_provider == "Google Gemini":
-    st.sidebar.info("🔗 获取API密钥: https://aistudio.google.com/app/apikey")
-    api_key = st.sidebar.text_input("Google API Key", type="password", help="输入您的Google AI Studio API密钥")
-    if api_key:
-        genai.configure(api_key=api_key)
-        AI_AVAILABLE = True
-        st.sidebar.success("✅ Google Gemini API 已配置")
-    else:
+    if not GOOGLE_AI_AVAILABLE:
+        st.sidebar.error("❌ Google Generative AI 模块未正确安装")
         AI_AVAILABLE = False
-        st.sidebar.warning("⚠️ 请输入Google API密钥")
+    else:
+        st.sidebar.info("🔗 获取API密钥: https://aistudio.google.com/app/apikey")
+        api_key = st.sidebar.text_input("Google API Key", type="password", help="输入您的Google AI Studio API密钥")
+        if api_key:
+            genai.configure(api_key=api_key)
+            AI_AVAILABLE = True
+            st.sidebar.success("✅ Google Gemini API 已配置")
+        else:
+            AI_AVAILABLE = False
+            st.sidebar.warning("⚠️ 请输入Google API密钥")
 elif ai_provider == "DeepSeek":
     st.sidebar.info("🔗 获取API密钥: https://platform.deepseek.com/api_keys")
     api_key = st.sidebar.text_input("DeepSeek API Key", type="password", help="输入您的DeepSeek API密钥")
