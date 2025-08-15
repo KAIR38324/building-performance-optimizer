@@ -48,6 +48,9 @@ venv.bak/
 
 # OS
 .DS_Store
+
+# 排除嵌套Git仓库
+building-performance-optimizer/
 .DS_Store?
 ._*
 .Spotlight-V100
