@@ -5,11 +5,28 @@ import torch.nn as nn
 import torch.nn.functional as F
 import joblib
 import numpy as np
-import google.generativeai as genai
-import openai
 import requests
 import json
 from pathlib import Path
+
+# 尝试导入AI相关模块，如果失败则显示错误信息
+try:
+    import google.generativeai as genai
+    GOOGLE_AI_AVAILABLE = True
+except ImportError as e:
+    st.error(f"Google Generative AI 导入失败: {e}")
+    st.error("请确保 google-generativeai 包已正确安装")
+    GOOGLE_AI_AVAILABLE = False
+    genai = None
+
+try:
+    import openai
+    OPENAI_AVAILABLE = True
+except ImportError as e:
+    st.error(f"OpenAI 导入失败: {e}")
+    st.error("请确保 openai 包已正确安装")
+    OPENAI_AVAILABLE = False
+    openai = None
 
 # --- 0. 全局设置与资源加载 ---
 
